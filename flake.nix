@@ -18,10 +18,10 @@
       };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.proxmox = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./machines/nixos
+          ./machines/proxmox.nix
           home-manager.nixosModules.home-manager
           hmModule
         ];
@@ -30,7 +30,7 @@
       nixosConfigurations.orbstack = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ./machines/orbstack
+          ./machines/orbstack.nix
           home-manager.nixosModules.home-manager
           hmModule
         ];
