@@ -6,6 +6,8 @@
     ../users/yihyunjoon/proxmox.nix
   ];
 
+  networking.hostName = "nixos-proxmox";
+
   services.openssh.enable = true;
 
   boot.loader.systemd-boot.enable = true;

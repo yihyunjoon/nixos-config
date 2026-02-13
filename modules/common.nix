@@ -13,7 +13,5 @@
   programs.nix-ld.enable = true;
   programs.zsh.enable = true;
 
-  networking.hostName = "nixos";
-
   system.stateVersion = "25.11";
 }
