@@ -11,19 +11,28 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
+      hmModule = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.yihyunjoon = import ./users/yihyunjoon/home.nix;
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
           ./machines/nixos
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.yihyunjoon = import ./users/yihyunjoon/home.nix;
-          }
+          hmModule
+        ];
+      };
+
+      nixosConfigurations.orbstack = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./machines/orbstack
+          home-manager.nixosModules.home-manager
+          hmModule
         ];
       };
     };
